@@ -4,6 +4,13 @@ import { LayoutTemplate, Terminal, Bot, CheckCircle2 } from 'lucide-react';
 export const Services: React.FC = () => {
   const services = [
     {
+      icon: <Bot className="w-10 h-10 text-white" />,
+      title: "Consultoría en Inteligencia Artificial",
+      description: "Asesoramos a tu empresa para integrar herramientas de IA que automatizan tareas, mejoran la atención al cliente y optimizan la toma de decisiones.",
+      features: ["Chatbots Inteligentes", "Automatización de Procesos", "Análisis de Datos"],
+      color: "bg-accent-500"
+    },
+    {
       icon: <Terminal className="w-10 h-10 text-white" />,
       title: "Programación Web a Medida",
       description: "Desarrollamos aplicaciones web escalables y personalizadas utilizando tecnologías modernas como React y Node.js para resolver tus necesidades específicas.",
@@ -16,13 +23,6 @@ export const Services: React.FC = () => {
       description: "Creamos sitios web corporativos y e-commerce rápidos, seguros y autogestionables. La solución ideal para tener presencia online profesional rápidamente.",
       features: ["Diseño Personalizado", "Tiendas Online (WooCommerce)", "Optimización SEO"],
       color: "bg-slate-800"
-    },
-    {
-      icon: <Bot className="w-10 h-10 text-white" />,
-      title: "Consultoría en Inteligencia Artificial",
-      description: "Asesoramos a tu empresa para integrar herramientas de IA que automatizan tareas, mejoran la atención al cliente y optimizan la toma de decisiones.",
-      features: ["Chatbots Inteligentes", "Automatización de Procesos", "Análisis de Datos"],
-      color: "bg-accent-500"
     }
   ];
 
@@ -35,7 +35,7 @@ export const Services: React.FC = () => {
             Soluciones tecnológicas diseñadas para crecer
           </h3>
           <p className="text-slate-600 text-lg">
-            Cubrimos todo el espectro digital, desde el código puro hasta la inteligencia artificial, adaptándonos al presupuesto y objetivos de tu Pyme.
+            Cubrimos todo el espectro digital, priorizando la inteligencia artificial y el desarrollo a medida para potenciar tu Pyme.
           </p>
         </div>
 

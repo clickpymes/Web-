@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -14,27 +14,27 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <footer id="contacto" className="bg-slate-900 text-white pt-20 pb-8">
+    <footer id="contacto" className="bg-slate-50 text-slate-800 pt-20 pb-8 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
-          {/* Form Side */}
-          <div>
-            <h2 className="text-3xl font-heading font-bold mb-4">¿Listo para empezar?</h2>
-            <p className="text-slate-400 mb-8 text-lg">
-              Cuéntanos sobre tu proyecto. Analizaremos tus necesidades y te propondremos la mejor solución tecnológica.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+          {/* Form Side - Takes up more space now since we removed info */}
+          <div className="lg:col-span-8">
+            <h2 className="text-3xl font-heading font-bold mb-4 text-slate-900">¿Hablamos?</h2>
+            <p className="text-slate-600 mb-8 text-lg">
+              Déjanos un mensaje y te contactaremos para discutir cómo podemos impulsar tu negocio.
             </p>
 
             {formStatus === 'success' ? (
-              <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-8 text-center">
-                <div className="inline-flex bg-green-500 rounded-full p-3 mb-4">
-                   <Send className="w-6 h-6 text-white" />
+              <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
+                <div className="inline-flex bg-green-100 rounded-full p-3 mb-4">
+                   <Send className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">¡Mensaje Enviado!</h3>
-                <p className="text-slate-300">Gracias por contactarnos. Te responderemos a la brevedad.</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">¡Mensaje Enviado!</h3>
+                <p className="text-slate-600">Gracias por contactarnos. Te responderemos a la brevedad.</p>
                 <button 
                   onClick={() => setFormStatus('idle')}
-                  className="mt-6 text-primary-400 hover:text-white underline text-sm"
+                  className="mt-6 text-primary-600 hover:text-primary-700 underline text-sm font-medium"
                 >
                   Enviar otro mensaje
                 </button>
@@ -43,125 +43,90 @@ export const Contact: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">Nombre</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Nombre</label>
                     <input 
                       type="text" 
                       id="name"
                       required
-                      className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-white placeholder-slate-500 outline-none transition-all"
-                      placeholder="Juan Pérez"
+                      className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 placeholder-slate-400 outline-none transition-all shadow-sm"
+                      placeholder="Tu nombre"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email</label>
                     <input 
                       type="email" 
                       id="email"
                       required
-                      className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-white placeholder-slate-500 outline-none transition-all"
-                      placeholder="juan@empresa.com"
+                      className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 placeholder-slate-400 outline-none transition-all shadow-sm"
+                      placeholder="tu@email.com"
                     />
                   </div>
                 </div>
                 
                 <div>
-                   <label htmlFor="service" className="block text-sm font-medium text-slate-300 mb-2">Servicio de interés</label>
+                   <label htmlFor="service" className="block text-sm font-medium text-slate-700 mb-2">Servicio de interés</label>
                    <select 
                     id="service"
-                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-white outline-none transition-all appearance-none"
+                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 outline-none transition-all appearance-none shadow-sm"
                    >
+                     <option>Consultoría IA</option>
                      <option>Desarrollo Web a Medida</option>
                      <option>WordPress / E-commerce</option>
-                     <option>Consultoría IA</option>
                      <option>Otro</option>
                    </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">Mensaje</label>
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Mensaje</label>
                   <textarea 
                     id="message"
                     rows={4}
                     required
-                    className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-white placeholder-slate-500 outline-none transition-all resize-none"
-                    placeholder="Cuéntanos brevemente qué necesitas..."
+                    className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 placeholder-slate-400 outline-none transition-all resize-none shadow-sm"
+                    placeholder="Cuéntanos qué necesitas..."
                   ></textarea>
                 </div>
 
-                <button 
-                  type="submit"
-                  disabled={formStatus === 'submitting'}
-                  className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-lg shadow-lg shadow-primary-600/20 transition-all hover:translate-y-[-2px] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {formStatus === 'submitting' ? 'Enviando...' : 'Enviar Mensaje'}
-                  {!formStatus && <Send size={18} />}
-                </button>
+                <div className="text-right">
+                  <button 
+                    type="submit"
+                    disabled={formStatus === 'submitting'}
+                    className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-lg shadow-lg shadow-primary-600/20 transition-all hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {formStatus === 'submitting' ? 'Enviando...' : 'Enviar Mensaje'}
+                    {!formStatus && <Send className="ml-2 w-5 h-5" />}
+                  </button>
+                </div>
               </form>
             )}
           </div>
 
-          {/* Info Side */}
-          <div className="flex flex-col justify-between">
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
-              <div className="mb-8">
-                 <div className="inline-block bg-white p-4 rounded-xl shadow-sm">
-                   {/* Logo SVG Inline para evitar errores 404 en deploy */}
-                   <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {/* Icono Tech */}
-                      <circle cx="25" cy="25" r="20" className="fill-primary-100" />
-                      <path d="M25 12V18M25 32V38M12 25H18M32 25H38" stroke="#2563EB" strokeWidth="2" strokeLinecap="round"/>
-                      <circle cx="25" cy="25" r="8" className="stroke-primary-600" strokeWidth="2"/>
-                      <circle cx="25" cy="25" r="3" className="fill-accent-500"/>
-                      <path d="M38 15L35 18M12 35L15 32M38 35L35 32M12 15L15 18" stroke="#06B6D4" strokeWidth="2" strokeLinecap="round"/>
-                      
-                      {/* Texto */}
-                      <text x="55" y="32" fontFamily="Montserrat, sans-serif" fontWeight="700" fontSize="24" fill="#1e293b">
-                        click<tspan fill="#2563EB">pymes</tspan>
-                      </text>
-                   </svg>
-                 </div>
-              </div>
+          {/* Simple Contact Info Side */}
+          <div className="lg:col-span-4 flex flex-col justify-center">
+            <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+              <h4 className="text-lg font-bold text-slate-900 mb-6">Contacto Directo</h4>
               
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <Mail className="w-6 h-6 text-primary-400 mt-1" />
-                  <div className="ml-4">
-                    <h4 className="text-white font-medium">Escríbenos</h4>
-                    <p className="text-slate-400">contacto@clickpymes.com</p>
-                  </div>
+              <div className="flex items-center space-x-4 group">
+                <div className="bg-primary-50 p-3 rounded-full group-hover:bg-primary-100 transition-colors">
+                  <Mail className="w-6 h-6 text-primary-600" />
                 </div>
-                
-                <div className="flex items-start">
-                  <Phone className="w-6 h-6 text-primary-400 mt-1" />
-                  <div className="ml-4">
-                    <h4 className="text-white font-medium">Llámanos</h4>
-                    <p className="text-slate-400">+34 912 345 678</p>
-                  </div>
-                </div>
-
-                 <div className="flex items-start">
-                  <MapPin className="w-6 h-6 text-primary-400 mt-1" />
-                  <div className="ml-4">
-                    <h4 className="text-white font-medium">Ubicación</h4>
-                    <p className="text-slate-400">Madrid, España (Servicio Remoto Global)</p>
-                  </div>
+                <div>
+                  <p className="text-sm text-slate-500 font-medium">Email</p>
+                  <a href="mailto:contacto@clickpymes.com" className="text-slate-900 font-semibold hover:text-primary-600 transition-colors">
+                    contacto@clickpymes.com
+                  </a>
                 </div>
               </div>
-            </div>
-
-            <div className="mt-8 text-slate-500 text-sm leading-relaxed">
-              <p>
-                Transformamos ideas en soluciones digitales. Especialistas en hacer crecer pequeños negocios con tecnología de grandes empresas.
-              </p>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
-          <p>© 2023 clickpymes. Todos los derechos reservados.</p>
+        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+          <p>© 2025 clickpymes. Todos los derechos reservados.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-primary-400 transition-colors">Política de Privacidad</a>
-            <a href="#" className="hover:text-primary-400 transition-colors">Términos de Servicio</a>
+            <a href="#" className="hover:text-primary-600 transition-colors">Privacidad</a>
+            <a href="#" className="hover:text-primary-600 transition-colors">Términos</a>
           </div>
         </div>
       </div>

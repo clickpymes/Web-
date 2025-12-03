@@ -13,10 +13,6 @@ export const Hero: React.FC = () => {
           
           {/* Text Content */}
           <div className="lg:col-span-7 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-sm mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-accent-500"></span>
-              <span className="text-sm font-medium text-slate-600">Innovación digital para tu negocio</span>
-            </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-slate-900 leading-tight mb-6">
               Impulsamos tu Pyme <br/>
