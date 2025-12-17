@@ -1,63 +1,6 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-  <head>
-    <!-- Google Analytics (GA4) -->
-    <!-- REEMPLAZA 'G-TU_ID_DE_MEDICION' CON TU ID REAL DE GOOGLE ANALYTICS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TU_ID_DE_MEDICION"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-TU_ID_DE_MEDICION');
-    </script>
-    <!-- Fin Google Analytics -->
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>clickpymes | Soluciones Digitales</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Poppins', 'sans-serif'],
-              heading: ['Montserrat', 'sans-serif'],
-            },
-            colors: {
-              primary: {
-                50: '#f0fdf4',  // Green 50
-                100: '#dcfce7', // Green 100
-                500: '#22c55e', // Green 500
-                600: '#16a34a', // Green 600 (Main Brand Color)
-                700: '#15803d', // Green 700
-                900: '#14532d', // Green 900
-              },
-              accent: {
-                400: '#22d3ee', // Cyan - Keeps a nice tech contrast with green
-                500: '#06b6d4',
-              }
-            }
-          }
-        }
-      }
-    </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
-  }
-}
-</script>
-</head>
-  <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-primary-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-primary-500 selection:text-white">
     <div id="root"></div>
+
+    <script type="module" src="/index.tsx"></script> 
   </body>
 </html>
