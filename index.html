@@ -1,3 +1,25 @@
+<html>
+<head>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Mueve esta configuración aquí abajo para asegurar que Tailwind ya cargó
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Poppins', 'sans-serif'],
+          heading: ['Montserrat', 'sans-serif'],
+        },
+        colors: {
+          primary: { 600: '#16a34a' },
+          accent: { 400: '#22d3ee' }
+        }
+      }
+    }
+  }
+</script>
+</head>
+
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-primary-500 selection:text-white">
     <div id="root"></div>
 
