@@ -121,7 +121,6 @@ export const Navbar: React.FC = () => {
     { name: 'Inicio', href: '#inicio' },
     { name: 'Servicios', href: '#servicios' },
     { name: 'Nosotros', href: '#nosotros' },
-    { name: 'Contacto', href: '#contacto' },
   ];
 
   return (
@@ -159,7 +158,7 @@ export const Navbar: React.FC = () => {
               href="#contacto"
               className="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 transform hover:-translate-y-0.5"
             >
-              Empezar ahora
+              Contacto
             </a>
           </div>
 
@@ -197,7 +196,7 @@ export const Navbar: React.FC = () => {
                   onClick={() => setIsOpen(false)}
                   className="block w-full text-center bg-primary-600 text-white px-5 py-3 rounded-lg font-medium"
                 >
-                  Empezar ahora
+                  Contacto
                 </a>
             </div>
           </div>
