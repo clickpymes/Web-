@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Gamepad2, Globe, SearchCheck } from 'lucide-react';
+import { ArrowUpRight, Gamepad2, Globe, Instagram, SearchCheck } from 'lucide-react';
 
 export const Herramientas: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const Herramientas: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col">
             <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
               <SearchCheck className="w-8 h-8 text-white" />
@@ -52,6 +52,28 @@ export const Herramientas: React.FC = () => {
                 className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 shadow-lg shadow-primary-600/30 transition-all"
               >
                 Detectar WordPress
+                <ArrowUpRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col">
+            <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
+              <Instagram className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">Diagnóstico de Instagram</h3>
+            <p className="text-slate-600 leading-relaxed flex-1">
+              Escribí el usuario de un perfil público y mirá cómo está: ritmo de publicación, interacción, biografía y qué
+              mejorar, con informe en español descargable en PDF.
+            </p>
+            <div className="mt-6">
+              <a
+                href="https://auditoria.clickpymes.com.ar/instagram/"
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 shadow-lg shadow-primary-600/30 transition-all"
+              >
+                Diagnosticar Instagram
                 <ArrowUpRight className="ml-2 h-4 w-4" />
               </a>
             </div>
