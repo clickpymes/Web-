@@ -1,16 +1,44 @@
 import React, { useState } from 'react';
 import { Mail, Send } from 'lucide-react';
 
-export const Contact: React.FC = () => {
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+const CONTACT_EMAIL = 'contacto@clickpymes.com.ar';
 
-  const handleSubmit = (e: React.FormEvent) => {
+export const Contact: React.FC = () => {
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormStatus('submitting');
-    // Simulate API call
-    setTimeout(() => {
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    // Campo trampa: las personas no lo ven, los robots sí. Si viene lleno, no se envía nada.
+    if (data.get('_honey')) {
       setFormStatus('success');
-    }, 1500);
+      return;
+    }
+
+    setFormStatus('submitting');
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          email: data.get('email'),
+          service: data.get('service'),
+          message: data.get('message'),
+          _subject: 'Nuevo mensaje desde clickpymes.com.ar',
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || String(result.success) === 'false') throw new Error('No se pudo enviar');
+      form.reset();
+      setFormStatus('success');
+    } catch {
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -41,12 +69,14 @@ export const Contact: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Nombre</label>
                     <input 
                       type="text" 
                       id="name"
+                      name="name"
                       required
                       className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 placeholder-slate-400 outline-none transition-all shadow-sm"
                       placeholder="Tu nombre"
@@ -57,6 +87,7 @@ export const Contact: React.FC = () => {
                     <input 
                       type="email" 
                       id="email"
+                      name="email"
                       required
                       className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 placeholder-slate-400 outline-none transition-all shadow-sm"
                       placeholder="tu@email.com"
@@ -68,6 +99,7 @@ export const Contact: React.FC = () => {
                    <label htmlFor="service" className="block text-sm font-medium text-slate-700 mb-2">Servicio de interés</label>
                    <select 
                     id="service"
+                    name="service"
                     className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 outline-none transition-all appearance-none shadow-sm"
                    >
                      <option>Consultoría IA</option>
@@ -81,12 +113,20 @@ export const Contact: React.FC = () => {
                   <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">Mensaje</label>
                   <textarea 
                     id="message"
+                    name="message"
                     rows={4}
                     required
                     className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-slate-900 placeholder-slate-400 outline-none transition-all resize-none shadow-sm"
                     placeholder="Cuéntanos qué necesitas..."
                   ></textarea>
                 </div>
+
+                {formStatus === 'error' && (
+                  <p role="alert" className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                    No pudimos enviar tu mensaje. Probá de nuevo en unos minutos o escribinos directamente a{' '}
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold underline">{CONTACT_EMAIL}</a>.
+                  </p>
+                )}
 
                 <div className="text-right">
                   <button 
@@ -113,8 +153,8 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500 font-medium">Email</p>
-                  <a href="mailto:contacto@clickpymes.com" className="text-slate-900 font-semibold hover:text-primary-600 transition-colors">
-                    contacto@clickpymes.com
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-slate-900 font-semibold hover:text-primary-600 transition-colors">
+                    {CONTACT_EMAIL}
                   </a>
                 </div>
               </div>
@@ -123,11 +163,11 @@ export const Contact: React.FC = () => {
         </div>
 
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
-          <p>© 2025 clickpymes. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} clickpymes. Todos los derechos reservados.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="https://puntoxpunto.app/" target="_blank" rel="noopener" className="hover:text-primary-600 transition-colors">Anotadores gratis</a>
-            <a href="#" className="hover:text-primary-600 transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-primary-600 transition-colors">Términos</a>
+            <a href="/privacidad.html" className="hover:text-primary-600 transition-colors">Privacidad</a>
+            <a href="/terminos.html" className="hover:text-primary-600 transition-colors">Términos</a>
           </div>
         </div>
       </div>
