@@ -1,4 +1,4 @@
-import { BarChart3, Coffee, Gamepad2, Globe, Instagram, SearchCheck, type LucideIcon } from 'lucide-react';
+import { BarChart3, Coffee, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, type LucideIcon } from 'lucide-react';
 
 export interface EnlaceHerramienta {
   texto: string;
@@ -6,8 +6,16 @@ export interface EnlaceHerramienta {
   principal: boolean;
 }
 
+export type Grupo = 'gratis' | 'ejemplo';
+
+export const GRUPOS: { id: Grupo; titulo: string; subtitulo: string }[] = [
+  { id: 'gratis', titulo: 'Herramientas gratis', subtitulo: 'Usalas cuando quieras, sin registrarte.' },
+  { id: 'ejemplo', titulo: 'Apps de ejemplo', subtitulo: 'Muestras de sistemas a medida que podemos desarrollar para tu negocio.' },
+];
+
 export interface Herramienta {
   id: string;
+  grupo: Grupo;
   titulo: string;
   descripcion: string;
   icono: LucideIcon;
@@ -22,6 +30,7 @@ export interface Herramienta {
 export const HERRAMIENTAS: Herramienta[] = [
   {
     id: 'auditoria-seo',
+    grupo: 'gratis',
     titulo: 'Auditoría SEO gratis',
     descripcion:
       'Pegá la dirección de tu sitio y en un par de minutos recibís un informe en español con SEO, enlaces rotos, velocidad y accesibilidad, listo para descargar en PDF.',
@@ -31,6 +40,7 @@ export const HERRAMIENTAS: Herramienta[] = [
   },
   {
     id: 'es-wordpress',
+    grupo: 'gratis',
     titulo: '¿Es WordPress?',
     descripcion:
       'Pegá la dirección de cualquier sitio y descubrí si usa WordPress, con qué plantilla y qué plugins está hecho, y datos de su hosting.',
@@ -40,6 +50,7 @@ export const HERRAMIENTAS: Herramienta[] = [
   },
   {
     id: 'instagram',
+    grupo: 'gratis',
     titulo: 'Diagnóstico de Instagram',
     descripcion:
       'Escribí el usuario de un perfil público y mirá cómo está: ritmo de publicación, interacción, biografía y qué mejorar, con informe en español descargable en PDF.',
@@ -49,6 +60,7 @@ export const HERRAMIENTAS: Herramienta[] = [
   },
   {
     id: 'competencia',
+    grupo: 'gratis',
     titulo: 'Comparador de competencia',
     descripcion:
       'Poné tu sitio y hasta 3 competidores y mirá lado a lado quién está mejor en SEO, velocidad en celular, contacto y presencia online, con los puntos para corregir primero y PDF descargable.',
@@ -57,7 +69,28 @@ export const HERRAMIENTAS: Herramienta[] = [
     menu: [{ texto: 'Comparador de competencia', href: 'https://auditoria.clickpymes.com.ar/comparar/' }],
   },
   {
+    id: 'seguridad',
+    grupo: 'gratis',
+    titulo: 'Salud de correo y seguridad',
+    descripcion:
+      'Revisá si los correos de tu dominio pueden caer en spam o ser suplantados (SPF, DKIM, DMARC) y si tu sitio tiene HTTPS y cabeceras de seguridad, con informe en español y PDF.',
+    icono: ShieldCheck,
+    enlaces: [{ texto: 'Revisar seguridad', href: 'https://auditoria.clickpymes.com.ar/seguridad/', principal: true }],
+    menu: [{ texto: 'Correo y seguridad', href: 'https://auditoria.clickpymes.com.ar/seguridad/' }],
+  },
+  {
+    id: 'google-maps',
+    grupo: 'gratis',
+    titulo: 'Reputación en Google Maps',
+    descripcion:
+      'Revisá la ficha de tu negocio en Google Maps: nota, reseñas, fotos y datos, y cómo te comparás con tu rubro. Informe en español y PDF.',
+    icono: MapPin,
+    enlaces: [{ texto: 'Revisar mi ficha', href: 'https://auditoria.clickpymes.com.ar/reputacion/', principal: true }],
+    menu: [{ texto: 'Google Maps', href: 'https://auditoria.clickpymes.com.ar/reputacion/' }],
+  },
+  {
     id: 'cafestock',
+    grupo: 'ejemplo',
     titulo: 'CaféStock',
     descripcion:
       'Control de stock de cápsulas de café: registrá las compras, mirá cuánto te queda, recibí alertas de stock crítico y revisá el consumo mensual. Un ejemplo de sistema de inventario a medida.',
@@ -67,6 +100,7 @@ export const HERRAMIENTAS: Herramienta[] = [
   },
   {
     id: 'anotadores',
+    grupo: 'ejemplo',
     titulo: 'Anotadores para jugar a las cartas',
     descripcion:
       'Punto x Punto: anotadores online y gratuitos para Fichitas (La Podrida) y Truco. Sin registro, sin instalar nada y se guardan en tu celular.',
