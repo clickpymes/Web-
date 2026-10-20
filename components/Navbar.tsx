@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Menu, X, MousePointer2 } from 'lucide-react';
-import { HERRAMIENTAS } from './herramientasData';
+import { GRUPOS, HERRAMIENTAS } from './herramientasData';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
     };
   }, [toolsOpen]);
 
-  const toolLinks = HERRAMIENTAS.flatMap((h) => h.menu);
+  const toolGroups = GRUPOS.map((g) => ({ ...g, links: HERRAMIENTAS.filter((h) => h.grupo === g.id).flatMap((h) => h.menu) }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,17 +91,22 @@ export const Navbar: React.FC = () => {
                     {toolsOpen && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 z-50">
                         <div role="menu" className="bg-white rounded-2xl shadow-xl border border-slate-100 py-2">
-                          {toolLinks.map((t) => (
-                            <a
-                              key={t.href}
-                              role="menuitem"
-                              href={t.href}
-                              target="_blank"
-                              rel="noopener"
-                              className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary-600"
-                            >
-                              {t.texto}
-                            </a>
+                          {toolGroups.map((g) => (
+                            <div key={g.id} role="group" aria-label={g.titulo}>
+                              <p className="px-4 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">{g.titulo}</p>
+                              {g.links.map((t) => (
+                                <a
+                                  key={t.href}
+                                  role="menuitem"
+                                  href={t.href}
+                                  target="_blank"
+                                  rel="noopener"
+                                  className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary-600"
+                                >
+                                  {t.texto}
+                                </a>
+                              ))}
+                            </div>
                           ))}
                           <a
                             role="menuitem"
@@ -164,17 +169,22 @@ export const Navbar: React.FC = () => {
                     </button>
                     {mobileToolsOpen && (
                       <div className="ml-3 pl-3 border-l-2 border-slate-100 space-y-1">
-                        {toolLinks.map((t) => (
-                          <a
-                            key={t.href}
-                            href={t.href}
-                            target="_blank"
-                            rel="noopener"
-                            onClick={() => setIsOpen(false)}
-                            className="block px-3 py-2.5 text-sm text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-md"
-                          >
-                            {t.texto}
-                          </a>
+                        {toolGroups.map((g) => (
+                          <div key={g.id}>
+                            <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{g.titulo}</p>
+                            {g.links.map((t) => (
+                              <a
+                                key={t.href}
+                                href={t.href}
+                                target="_blank"
+                                rel="noopener"
+                                onClick={() => setIsOpen(false)}
+                                className="block px-3 py-2.5 text-sm text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-md"
+                              >
+                                {t.texto}
+                              </a>
+                            ))}
+                          </div>
                         ))}
                         <a
                           href="#herramientas"
