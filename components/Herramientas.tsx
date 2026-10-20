@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Gamepad2, SearchCheck } from 'lucide-react';
+import { ArrowUpRight, Gamepad2, Globe, SearchCheck } from 'lucide-react';
 
 export const Herramientas: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const Herramientas: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col">
             <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
               <SearchCheck className="w-8 h-8 text-white" />
@@ -37,6 +37,28 @@ export const Herramientas: React.FC = () => {
 
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col">
             <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
+              <Globe className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">¿Es WordPress?</h3>
+            <p className="text-slate-600 leading-relaxed flex-1">
+              Pegá la dirección de cualquier sitio y descubrí si usa WordPress, con qué plantilla y qué plugins está hecho,
+              y datos de su hosting.
+            </p>
+            <div className="mt-6">
+              <a
+                href="https://auditoria.clickpymes.com.ar/wordpress/"
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 shadow-lg shadow-primary-600/30 transition-all"
+              >
+                Detectar WordPress
+                <ArrowUpRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col">
+            <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
               <Gamepad2 className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">Anotadores para jugar a las cartas</h3>
@@ -44,7 +66,7 @@ export const Herramientas: React.FC = () => {
               Punto x Punto: anotadores online y gratuitos para Fichitas (La Podrida) y Truco. Sin registro, sin instalar
               nada y se guardan en tu celular.
             </p>
-            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="https://puntoxpunto.app/"
                 target="_blank"
