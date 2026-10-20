@@ -4,7 +4,7 @@ import { ArrowUpRight, Gamepad2, Globe, SearchCheck } from 'lucide-react';
 export const Herramientas: React.FC = () => {
   return (
     <section id="herramientas" className="py-16 bg-slate-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <p className="text-primary-600 font-semibold tracking-wide uppercase text-xs mb-1">Herramientas gratis</p>
           <h2 className="text-2xl md:text-3xl font-heading font-bold text-slate-900">
@@ -12,7 +12,7 @@ export const Herramientas: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col">
             <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
               <SearchCheck className="w-8 h-8 text-white" />
