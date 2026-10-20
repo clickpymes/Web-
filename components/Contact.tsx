@@ -125,6 +125,7 @@ export const Contact: React.FC = () => {
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
           <p>© 2025 clickpymes. Todos los derechos reservados.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
+            <a href="https://puntoxpunto.app/" target="_blank" rel="noopener" className="hover:text-primary-600 transition-colors">Anotadores gratis</a>
             <a href="#" className="hover:text-primary-600 transition-colors">Privacidad</a>
             <a href="#" className="hover:text-primary-600 transition-colors">Términos</a>
           </div>
