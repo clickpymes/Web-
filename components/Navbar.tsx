@@ -1,22 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Menu, X, MousePointer2 } from 'lucide-react';
-import { GRUPOS, HERRAMIENTAS } from './herramientasData';
+import { GRUPOS, HERRAMIENTAS, type Grupo } from './herramientasData';
 
-export const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [toolsOpen, setToolsOpen] = useState(false);
-  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
-  const toolsRef = useRef<HTMLDivElement>(null);
+const linksDe = (grupo: Grupo) => HERRAMIENTAS.filter((h) => h.grupo === grupo).flatMap((h) => h.menu);
+const nombreMenu: Record<Grupo, string> = { gratis: 'Herramientas', ejemplo: 'Apps de ejemplo' };
 
-  // Cierra el submenú al tocar afuera o con Escape
+// Submenú de escritorio: abre al pasar el mouse o al hacer click; se cierra al tocar afuera o con Escape
+const MenuEscritorio: React.FC<{ grupo: Grupo }> = ({ grupo }) => {
+  const [abierto, setAbierto] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!toolsOpen) return;
+    if (!abierto) return;
     const onDown = (e: MouseEvent) => {
-      if (toolsRef.current && !toolsRef.current.contains(e.target as Node)) setToolsOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node)) setAbierto(false);
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setToolsOpen(false);
+      if (e.key === 'Escape') setAbierto(false);
     };
     document.addEventListener('mousedown', onDown);
     document.addEventListener('keydown', onKey);
@@ -24,10 +23,92 @@ export const Navbar: React.FC = () => {
       document.removeEventListener('mousedown', onDown);
       document.removeEventListener('keydown', onKey);
     };
-  }, [toolsOpen]);
+  }, [abierto]);
+  return (
+    <div ref={ref} className="relative" onMouseEnter={() => setAbierto(true)} onMouseLeave={() => setAbierto(false)}>
+      <button
+        type="button"
+        aria-haspopup="true"
+        aria-expanded={abierto}
+        onClick={() => setAbierto(true)}
+        className="inline-flex items-center gap-1 text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200"
+      >
+        {nombreMenu[grupo]}
+        <ChevronDown className={`h-4 w-4 transition-transform ${abierto ? 'rotate-180' : ''}`} />
+      </button>
+      {abierto && (
+        <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 z-50">
+          <div role="menu" className="bg-white rounded-2xl shadow-xl border border-slate-100 py-2">
+            {linksDe(grupo).map((t) => (
+              <a
+                key={t.href}
+                role="menuitem"
+                href={t.href}
+                target="_blank"
+                rel="noopener"
+                className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary-600"
+              >
+                {t.texto}
+              </a>
+            ))}
+            <a
+              role="menuitem"
+              href={`#herramientas-${grupo}`}
+              onClick={() => setAbierto(false)}
+              className="block px-4 py-2.5 mt-1 text-sm font-semibold text-primary-600 border-t border-slate-100 hover:bg-slate-50"
+            >
+              {grupo === 'gratis' ? 'Ver todas las herramientas' : 'Ver todas las apps'}
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
-  const toolGroups = GRUPOS.map((g) => ({ ...g, links: HERRAMIENTAS.filter((h) => h.grupo === g.id).flatMap((h) => h.menu) }));
+const MenuCelular: React.FC<{ grupo: Grupo; cerrar: () => void }> = ({ grupo, cerrar }) => {
+  const [abierto, setAbierto] = useState(false);
+  return (
+    <div>
+      <button
+        type="button"
+        aria-expanded={abierto}
+        onClick={() => setAbierto((o) => !o)}
+        className="flex w-full items-center justify-between px-3 py-3 text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50 rounded-md"
+      >
+        {nombreMenu[grupo]}
+        <ChevronDown className={`h-5 w-5 transition-transform ${abierto ? 'rotate-180' : ''}`} />
+      </button>
+      {abierto && (
+        <div className="ml-3 pl-3 border-l-2 border-slate-100 space-y-1">
+          {linksDe(grupo).map((t) => (
+            <a
+              key={t.href}
+              href={t.href}
+              target="_blank"
+              rel="noopener"
+              onClick={cerrar}
+              className="block px-3 py-2.5 text-sm text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-md"
+            >
+              {t.texto}
+            </a>
+          ))}
+          <a
+            href={`#herramientas-${grupo}`}
+            onClick={cerrar}
+            className="block px-3 py-2.5 text-sm font-semibold text-primary-600 hover:bg-slate-50 rounded-md"
+          >
+            {grupo === 'gratis' ? 'Ver todas las herramientas' : 'Ver todas las apps'}
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
 
+export const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -62,7 +143,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-5 lg:space-x-8 text-sm lg:text-base">
             {navLinks.map((link) => (
               <React.Fragment key={link.name}>
                 <a
@@ -71,56 +152,7 @@ export const Navbar: React.FC = () => {
                 >
                   {link.name}
                 </a>
-                {link.name === 'Servicios' && (
-                  <div
-                    ref={toolsRef}
-                    className="relative"
-                    onMouseEnter={() => setToolsOpen(true)}
-                    onMouseLeave={() => setToolsOpen(false)}
-                  >
-                    <button
-                      type="button"
-                      aria-haspopup="true"
-                      aria-expanded={toolsOpen}
-                      onClick={() => setToolsOpen(true)}
-                      className="inline-flex items-center gap-1 text-slate-600 hover:text-primary-600 font-medium transition-colors duration-200"
-                    >
-                      Herramientas
-                      <ChevronDown className={`h-4 w-4 transition-transform ${toolsOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {toolsOpen && (
-                      <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-72 z-50">
-                        <div role="menu" className="bg-white rounded-2xl shadow-xl border border-slate-100 py-2">
-                          {toolGroups.map((g) => (
-                            <div key={g.id} role="group" aria-label={g.titulo}>
-                              <p className="px-4 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">{g.titulo}</p>
-                              {g.links.map((t) => (
-                                <a
-                                  key={t.href}
-                                  role="menuitem"
-                                  href={t.href}
-                                  target="_blank"
-                                  rel="noopener"
-                                  className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-primary-600"
-                                >
-                                  {t.texto}
-                                </a>
-                              ))}
-                            </div>
-                          ))}
-                          <a
-                            role="menuitem"
-                            href="#herramientas"
-                            onClick={() => setToolsOpen(false)}
-                            className="block px-4 py-2.5 mt-1 text-sm font-semibold text-primary-600 border-t border-slate-100 hover:bg-slate-50"
-                          >
-                            Ver todas las herramientas
-                          </a>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
+                {link.name === 'Servicios' && GRUPOS.map((g) => <MenuEscritorio key={g.id} grupo={g.id} />)}
               </React.Fragment>
             ))}
             <a 
@@ -156,47 +188,7 @@ export const Navbar: React.FC = () => {
                 >
                   {link.name}
                 </a>
-                {link.name === 'Servicios' && (
-                  <div>
-                    <button
-                      type="button"
-                      aria-expanded={mobileToolsOpen}
-                      onClick={() => setMobileToolsOpen((o) => !o)}
-                      className="flex w-full items-center justify-between px-3 py-3 text-base font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50 rounded-md"
-                    >
-                      Herramientas
-                      <ChevronDown className={`h-5 w-5 transition-transform ${mobileToolsOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    {mobileToolsOpen && (
-                      <div className="ml-3 pl-3 border-l-2 border-slate-100 space-y-1">
-                        {toolGroups.map((g) => (
-                          <div key={g.id}>
-                            <p className="px-3 pt-2 text-xs font-semibold uppercase tracking-wide text-slate-400">{g.titulo}</p>
-                            {g.links.map((t) => (
-                              <a
-                                key={t.href}
-                                href={t.href}
-                                target="_blank"
-                                rel="noopener"
-                                onClick={() => setIsOpen(false)}
-                                className="block px-3 py-2.5 text-sm text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-md"
-                              >
-                                {t.texto}
-                              </a>
-                            ))}
-                          </div>
-                        ))}
-                        <a
-                          href="#herramientas"
-                          onClick={() => { setIsOpen(false); setMobileToolsOpen(false); }}
-                          className="block px-3 py-2.5 text-sm font-semibold text-primary-600 hover:bg-slate-50 rounded-md"
-                        >
-                          Ver todas las herramientas
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                )}
+                {link.name === 'Servicios' && GRUPOS.map((g) => <MenuCelular key={g.id} grupo={g.id} cerrar={() => setIsOpen(false)} />)}
               </React.Fragment>
             ))}
             <div className="pt-2">
