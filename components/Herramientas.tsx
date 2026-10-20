@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Gamepad2, Globe, Instagram, SearchCheck } from 'lucide-react';
+import { ArrowUpRight, BarChart3, Gamepad2, Globe, Instagram, SearchCheck } from 'lucide-react';
 
 export const Herramientas: React.FC = () => {
   return (
@@ -80,6 +80,28 @@ export const Herramientas: React.FC = () => {
           </div>
 
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col">
+            <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
+              <BarChart3 className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">Comparador de competencia</h3>
+            <p className="text-slate-600 leading-relaxed flex-1">
+              Poné tu sitio y hasta 3 competidores y mirá lado a lado quién está mejor en SEO, velocidad en celular,
+              contacto y presencia online, con los puntos para corregir primero y PDF descargable.
+            </p>
+            <div className="mt-6">
+              <a
+                href="https://auditoria.clickpymes.com.ar/comparar/"
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 shadow-lg shadow-primary-600/30 transition-all"
+              >
+                Comparar con mi competencia
+                <ArrowUpRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 flex flex-col md:col-span-2">
             <div className="bg-primary-600 p-3 rounded-2xl shadow-lg w-fit mb-5">
               <Gamepad2 className="w-8 h-8 text-white" />
             </div>
