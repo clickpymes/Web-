@@ -18,7 +18,7 @@ const SITIOS: Sitio[] = [
     imagen: '/be3d-card.svg',
     alt: 'Be3D, impresión 3D a medida',
     descripcion:
-      'Sitio de un emprendimiento de impresión 3D: presenta los servicios (piezas a medida, prototipos, repuestos y series cortas), recibe pedidos de cotización por formulario e incluye un conversor gratuito de archivos 3MF y OBJ a STL que funciona en el navegador.',
+      'Sitio de un emprendimiento de impresión 3D: servicios, pedido de cotización por formulario y un conversor gratuito de 3MF/OBJ a STL en el navegador.',
   },
 ];
 
@@ -29,7 +29,7 @@ export const SitiosDesarrollados: React.FC = () => (
         <p className="text-primary-600 font-semibold tracking-wide uppercase text-xs mb-1">Sitios desarrollados</p>
         <h2 className="text-2xl md:text-3xl font-heading font-bold text-slate-900">Trabajos que ya están online</h2>
       </div>
-      <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {SITIOS.map((s) => (
           <a
             key={s.url}
@@ -39,7 +39,7 @@ export const SitiosDesarrollados: React.FC = () => (
             className="group bg-slate-50 rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:shadow-lg transition-shadow"
           >
             <img src={s.imagen} alt={s.alt} width={1200} height={630} loading="lazy" className="w-full h-auto" />
-            <div className="p-8 flex flex-col flex-1">
+            <div className="p-6 flex flex-col flex-1">
               <h3 className="text-xl font-heading font-bold text-slate-900 mb-2">{s.nombre}</h3>
               <p className="text-slate-600 leading-relaxed flex-1">{s.descripcion}</p>
               <span className="mt-6 inline-flex items-center text-sm font-semibold text-primary-600 group-hover:text-primary-700">
