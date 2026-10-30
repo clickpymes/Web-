@@ -1,4 +1,4 @@
-import { BarChart3, Coffee, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, type LucideIcon } from 'lucide-react';
+import { BarChart3, Coffee, Flag, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, Wallet, type LucideIcon } from 'lucide-react';
 
 export interface EnlaceHerramienta {
   texto: string;
@@ -97,6 +97,26 @@ export const HERRAMIENTAS: Herramienta[] = [
     icono: Coffee,
     enlaces: [{ texto: 'Probar CaféStock', href: 'https://cafestock.clickpymes.com.ar/', principal: true }],
     menu: [{ texto: 'CaféStock (stock de cápsulas)', href: 'https://cafestock.clickpymes.com.ar/' }],
+  },
+  {
+    id: 'torneo-golf',
+    grupo: 'ejemplo',
+    titulo: 'Match de golf',
+    descripcion:
+      'Llevá el control de los matches de golf entre amigos: match play con handicap, golpes de ventaja por hoyo, partidas de 2 a 4 jugadores y varias canchas. Un ejemplo de app compartida con usuarios.',
+    icono: Flag,
+    enlaces: [{ texto: 'Probar Match de golf', href: 'https://torneogolf.clickpymes.com.ar/', principal: true }],
+    menu: [{ texto: 'Match de golf', href: 'https://torneogolf.clickpymes.com.ar/' }],
+  },
+  {
+    id: 'pagoyo',
+    grupo: 'ejemplo',
+    titulo: 'PagoYo',
+    descripcion:
+      'Dividí gastos con amigos, la pareja o el grupo de viaje: cargá quién pagó qué y la app calcula quién le debe a quién. Se puede sumar gente sin que tenga cuenta.',
+    icono: Wallet,
+    enlaces: [{ texto: 'Probar PagoYo', href: 'https://pagoyo.clickpymes.com.ar/', principal: true }],
+    menu: [{ texto: 'PagoYo (dividir gastos)', href: 'https://pagoyo.clickpymes.com.ar/' }],
   },
   {
     id: 'anotadores',
