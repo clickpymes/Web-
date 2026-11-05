@@ -1,4 +1,4 @@
-import { BarChart3, Coffee, Flag, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, Wallet, type LucideIcon } from 'lucide-react';
+import { BarChart3, BookOpen, Coffee, Flag, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, Wallet, type LucideIcon } from 'lucide-react';
 
 export interface EnlaceHerramienta {
   texto: string;
@@ -117,6 +117,16 @@ export const HERRAMIENTAS: Herramienta[] = [
     icono: Wallet,
     enlaces: [{ texto: 'Probar PagoYo', href: 'https://pagoyo.clickpymes.com.ar/', principal: true }],
     menu: [{ texto: 'PagoYo (dividir gastos)', href: 'https://pagoyo.clickpymes.com.ar/' }],
+  },
+  {
+    id: 'mis-libros',
+    grupo: 'ejemplo',
+    titulo: 'Mis Libros',
+    descripcion:
+      'Tu biblioteca personal: cargá libros escaneando el ISBN, marcá cuáles leíste o estás leyendo, y anotá a quién se los prestaste. Con inicio de sesión y todo guardado en la nube.',
+    icono: BookOpen,
+    enlaces: [{ texto: 'Probar Mis Libros', href: 'https://libros.clickpymes.com.ar/', principal: true }],
+    menu: [{ texto: 'Mis Libros', href: 'https://libros.clickpymes.com.ar/' }],
   },
   {
     id: 'anotadores',
