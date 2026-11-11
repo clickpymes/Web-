@@ -1,4 +1,4 @@
-import { BarChart3, BookOpen, Coffee, Flag, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, Wallet, type LucideIcon } from 'lucide-react';
+import { BarChart3, BookOpen, Coffee, Flag, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, Users, Wallet, type LucideIcon } from 'lucide-react';
 
 export interface EnlaceHerramienta {
   texto: string;
@@ -127,6 +127,16 @@ export const HERRAMIENTAS: Herramienta[] = [
     icono: BookOpen,
     enlaces: [{ texto: 'Probar Mis Libros', href: 'https://libros.clickpymes.com.ar/', principal: true }],
     menu: [{ texto: 'Mis Libros', href: 'https://libros.clickpymes.com.ar/' }],
+  },
+  {
+    id: 'armalo',
+    grupo: 'ejemplo',
+    titulo: 'Armalo',
+    descripcion:
+      'Armá partidos de pádel de a 4: elegí día, hora, cancha y categoría, invitá jugadores con un link o completá el partido al azar. Con avisos por mail y regla de categorías.',
+    icono: Users,
+    enlaces: [{ texto: 'Probar Armalo', href: 'https://armalo.clickpymes.com.ar/', principal: true }],
+    menu: [{ texto: 'Armalo (partidos de pádel)', href: 'https://armalo.clickpymes.com.ar/' }],
   },
   {
     id: 'anotadores',
