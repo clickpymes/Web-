@@ -1,4 +1,4 @@
-import { BarChart3, BookOpen, Coffee, Flag, Gamepad2, Globe, Instagram, MapPin, SearchCheck, ShieldCheck, Users, Wallet, type LucideIcon } from 'lucide-react';
+import { BarChart3, BookOpen, Coffee, Flag, Gamepad2, Globe, Instagram, MapPin, Martini, SearchCheck, ShieldCheck, Users, Wallet, type LucideIcon } from 'lucide-react';
 
 export interface EnlaceHerramienta {
   texto: string;
@@ -137,6 +137,16 @@ export const HERRAMIENTAS: Herramienta[] = [
     icono: Users,
     enlaces: [{ texto: 'Probar Armalo', href: 'https://armalo.clickpymes.com.ar/', principal: true }],
     menu: [{ texto: 'Armalo (partidos de pádel)', href: 'https://armalo.clickpymes.com.ar/' }],
+  },
+  {
+    id: 'mi-barcito',
+    grupo: 'ejemplo',
+    titulo: 'Mi Barcito',
+    descripcion:
+      'Armá tragos con lo que tenés en casa: cargás tus bebidas e ingredientes y la app te sugiere qué podés preparar y cómo.',
+    icono: Martini,
+    enlaces: [{ texto: 'Probar Mi Barcito', href: 'https://mibarcito.clickpymes.com.ar/', principal: true }],
+    menu: [{ texto: 'Mi Barcito (tragos en casa)', href: 'https://mibarcito.clickpymes.com.ar/' }],
   },
   {
     id: 'anotadores',
